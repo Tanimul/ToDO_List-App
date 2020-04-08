@@ -9,13 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".About"
+            android:parentActivityName=".Homelayout"></activity>
+        <activity android:name=".Setting"
+            android:parentActivityName=".Homelayout"/>
+        <activity android:name=".ListOfWork"
+            android:parentActivityName=".Homelayout"/>
+        <activity
+            android:name=".Homelayout"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Addwork"
+            android:parentActivityName=".Homelayout"></activity>
     </application>
 
 </manifest>

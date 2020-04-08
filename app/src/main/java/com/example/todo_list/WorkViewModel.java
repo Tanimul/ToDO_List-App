@@ -12,16 +12,19 @@ public class WorkViewModel extends AndroidViewModel {
     private WorkRepository workRepository;
     private LiveData<List<Work>> allWorks;
 
+
+
+
     public WorkViewModel(@NonNull Application application) {
         super(application);
         workRepository = new WorkRepository(application);
         allWorks = workRepository.getAllworkes();
-    }
 
+
+    }
     public void insert(Work work) {
         workRepository.insert(work);
     }
-
     public void update(Work work) {
         workRepository.update(work);
     }
@@ -37,5 +40,8 @@ public class WorkViewModel extends AndroidViewModel {
     public LiveData<List<Work>> getAllWorks() {
         return allWorks;
     }
+
+
+
 }
 

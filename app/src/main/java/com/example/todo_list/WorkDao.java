@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.room.Dao;
 import androidx.room.Delete;
+import androidx.room.Ignore;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;

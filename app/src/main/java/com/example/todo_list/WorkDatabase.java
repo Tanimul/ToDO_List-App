@@ -10,7 +10,7 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 
-@Database(entities = {Work.class}, version = 1,exportSchema = false)
+@Database(entities = {Work.class}, version = 2,exportSchema = false)
 public abstract class WorkDatabase extends RoomDatabase {
 
     private static WorkDatabase instance;
@@ -24,6 +24,7 @@ public abstract class WorkDatabase extends RoomDatabase {
                     .fallbackToDestructiveMigration()
                     .addCallback(roomcallback)
                     .build();
+
         }
 
         return instance;
@@ -48,9 +49,11 @@ public abstract class WorkDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            workDao.insert(new Work("study3", "1-1-20", "11.pm", 3));
-            workDao.insert(new Work("study2", "3-1-20", "9.am", 4));
-            workDao.insert(new Work("study1", "3-1-20", "10.pm", 2));
+
+            workDao.insert(new Work("final project Work", "1-1-20", "11.00 pm", 3,true));
+            workDao.insert(new Work("think about Trigonous", "3-1-20", "9.30 am", 4,false));
+            workDao.insert(new Work("think about Job", "3-1-20", "10.00 pm", 2,true));
+            workDao.insert(new Work("think about Life", "4-1-20", "12.00 pm", 5,false));
 
             return null;
         }

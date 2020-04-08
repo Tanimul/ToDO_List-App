@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".About">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="15dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            tools:ignore="MissingConstraints"
+            app:cardCornerRadius="10dp"
+            app:cardBackgroundColor="#B6AEAE"
+
+            >
+
+            <ImageView
+                android:id="@+id/imageabout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:src="@drawable/todo"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="2dp"
+                tools:layout_editor_absoluteY="15dp" />
+
+            <TextView
+                android:id="@+id/appname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="120dp"
+                android:layout_marginLeft="200dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textSize="30dp"
+                app:layout_constraintStart_toEndOf="@+id/imageabout"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/slogan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="170dp"
+                android:layout_marginLeft="170dp"
+                android:layout_marginTop="70dp"
+                android:gravity="center"
+                android:text="Make a easy life"
+                android:textSize="25sp"
+                app:layout_constraintStart_toEndOf="@+id/imageabout"
+                app:layout_constraintTop_toBottomOf="@+id/appname"
+                tools:ignore="MissingConstraints" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:layout_constraintTop_toBottomOf="@id/card_1"
+            app:cardCornerRadius="10dp"
+            app:cardBackgroundColor="#B6AEAE"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="10dp"
+                android:text="About Todo_List"
+                android:textSize="20dp"
+                app:layout_constraintTop_toBottomOf="@id/imageabout"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/paragrapabout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/about_text_with_paragraphs"
+                app:layout_constraintTop_toBottomOf="@id/about"
+                tools:ignore="MissingConstraints" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_3"
+            app:cardCornerRadius="10dp"
+            app:cardBackgroundColor="#B6AEAE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:layout_constraintTop_toBottomOf="@id/card_2"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="10dp"
+                android:text="Service"
+                android:textSize="20dp"
+                app:layout_constraintTop_toBottomOf="@id/paragrapabout"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/service_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:paddingLeft="20dp"
+                android:text="@string/service_text"
+                app:layout_constraintTop_toBottomOf="@id/service"
+                tools:ignore="MissingConstraints" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="10dp"
+            app:cardBackgroundColor="#B6AEAE"
+            app:layout_constraintTop_toBottomOf="@id/card_3"
+            tools:ignore="MissingConstraints">
+
+
+            <TextView
+                android:id="@+id/contacttitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:text="Contacts"
+                android:textSize="20dp"
+                app:layout_constraintTop_toBottomOf="@id/service_details"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/facebook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="50dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/fa"
+                android:drawablePadding="10dp"
+                android:paddingBottom="10dp"
+                android:text="Facebook"
+                app:layout_constraintTop_toBottomOf="@id/contacttitle"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="27dp" />
+
+            <Button
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="95dp"
+                android:layout_marginLeft="44dp"
+                android:layout_marginTop="50dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/ic_email"
+                android:drawablePadding="10dp"
+                android:paddingBottom="10dp"
+                android:text="email"
+                app:layout_constraintStart_toEndOf="@id/facebook"
+                app:layout_constraintTop_toBottomOf="@id/contacttitle" />
+
+            <Button
+                android:id="@+id/github"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="175dp"
+                android:layout_marginLeft="44dp"
+                android:layout_marginTop="50dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/github"
+                android:drawablePadding="10dp"
+                android:paddingBottom="10dp"
+                android:text="github"
+                app:layout_constraintStart_toEndOf="@id/email"
+                app:layout_constraintTop_toBottomOf="@id/contacttitle" />
+
+            <Button
+                android:id="@+id/instragam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="275dp"
+                android:layout_marginLeft="44dp"
+                android:layout_marginTop="50dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/instagram"
+                android:drawablePadding="10dp"
+                android:paddingBottom="10dp"
+                android:text="instragram"
+                app:layout_constraintStart_toEndOf="@id/github"
+                app:layout_constraintTop_toBottomOf="@id/contacttitle" />
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.core.widget.NestedScrollView>

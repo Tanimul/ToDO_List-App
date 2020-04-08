@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+ >
+    <group android:checkableBehavior="single">
+        <item
+            android:icon="@drawable/add_black"
+            android:id="@+id/nav_addwork"
+            android:title="Add Work"
+            />
+        <item
+            android:icon="@drawable/ic_work_black"
+            android:id="@+id/nav_listof_work"
+            android:title="List of Work" />
+
+        <item
+            android:icon="@drawable/ic_settings"
+            android:id="@+id/nav_setting"
+            android:title="Setting" />
+        <item
+            android:icon="@drawable/ic_share"
+            android:id="@+id/nav_share"
+            android:title="Share" />
+        <item
+            android:icon="@drawable/ic_star_black"
+            android:id="@+id/nav_rate_me"
+            android:title="Rate me" />
+        <item
+            android:icon="@drawable/ic_info"
+            android:id="@+id/nav_about"
+            android:title="About" />
+    </group>
+</menu>

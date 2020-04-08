@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">ToDo_List</string>
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_text_with_paragraphs">
+        ToDoList is software in the category of Task Management.\nthe app contain all of the tasks that you need to\ncomplete on a given day.
+    </string>
+    <string name="service_text">
+        -Add work\n\n-Delete work\n\n-Update Work\n\n-All work\n\n-pirotiy based work\n\n-dark mode\n\n-reminder\n
+    </string>
 </resources>
