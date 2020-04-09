@@ -1,30 +1,9 @@
 package com.example.todo_list;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.Application;
-import android.app.SearchManager;
+import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -36,30 +15,38 @@ import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextPaint;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
 
-import org.w3c.dom.ls.LSException;
-
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -102,6 +89,7 @@ public class Homelayout extends AppCompatActivity implements OnNavigationItemSel
         floatingActionButton2 = findViewById(R.id.add_work_floating_button2);
         imageView = findViewById(R.id.imagenull);
         textView = findViewById(R.id.txtnull);
+
         floatingActionButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,7 +108,6 @@ public class Homelayout extends AppCompatActivity implements OnNavigationItemSel
             public void onChanged(List<Work> works) {
                 workAdapter1.setNotes(works);
                 linearLayout.setVisibility(workAdapter1.getItemCount() == 0 ? View.VISIBLE : View.INVISIBLE);
-
 //                if (works.size() != 0) {
 //                    Log.d("ffff", "f" + works.size());
 //                    imageView.setVisibility(View.INVISIBLE);
@@ -139,14 +126,41 @@ public class Homelayout extends AppCompatActivity implements OnNavigationItemSel
             @Override
             public void onChanged(List<Work> works) {
 
-
                 for (int i = 0; i < works.size(); i++) {
                     remindertime.add(works.get(i).getDue_time());
                     reminderdate.add(works.get(i).getDate());
                     remindername.add(works.get(i).getEvent_name());
-                    Log.d("eeee", "" + remindertime.get(i));
-                    Log.d("eeee", "" + reminderdate.get(i));
-                    Log.d("eeee", "" + remindername.get(i));
+                    if (works.get(i).isCom() == false) {
+                        Log.d("dddd", "" + remindertime.get(i));
+                        Log.d("dddd", "" + reminderdate.get(i));
+                        Log.d("dddd", "" + remindername.get(i));
+
+                        String[] sp = reminderdate.get(i).split("/");
+                        String[] sp1 = remindertime.get(i).split("[: ]");
+                        int i0 = Integer.parseInt(sp[0]);
+                        int i1 = Integer.parseInt(sp[1]) - 1;
+                        int i2 = Integer.parseInt(sp[2]);
+                        int i5 = 0;
+                        int i3 = Integer.parseInt(sp1[0]);
+                        int i4 = Integer.parseInt(sp1[1]);
+                        if (sp1[2] != "AM") {
+                            i5 = i3 + 12;
+                        }
+                        Log.d("dddd", "" + i0);
+                        Log.d("dddd", "" + i1);
+                        Log.d("dddd", "" + i2);
+                        Log.d("dddd", "" + i3);
+                        Log.d("dddd", "" + i4);
+                        Log.d("dddd", "" + i5);
+                        Toast.makeText(Homelayout.this, "www", Toast.LENGTH_SHORT).show();
+                        Calendar cal = Calendar.getInstance();
+                        cal.set(i2, i1, i0, i5, i4, 0);
+                        Intent intent12 = new Intent(Homelayout.this, Alertreciver.class);
+                        PendingIntent pendingIntent = PendingIntent.getBroadcast(Homelayout.this, 0, intent12, 0);
+                        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                        alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+                    }
+
 
                 }
             }
@@ -171,8 +185,7 @@ public class Homelayout extends AppCompatActivity implements OnNavigationItemSel
         }
         navigationView.setNavigationItemSelectedListener(this);
 
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
-                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
@@ -180,8 +193,10 @@ public class Homelayout extends AppCompatActivity implements OnNavigationItemSel
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
                 workViewModel.delete(workAdapter1.getWorkAt(viewHolder.getAdapterPosition()));
                 Toast.makeText(Homelayout.this, "Work Completed", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override

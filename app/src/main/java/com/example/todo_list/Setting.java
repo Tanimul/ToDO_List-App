@@ -1,29 +1,16 @@
 package com.example.todo_list;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.app.NotificationCompat;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 public class Setting extends AppCompatActivity {
     private Switch aSwitch, aSwitch2;
@@ -52,10 +39,6 @@ public class Setting extends AppCompatActivity {
         setTitle("Settings");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-
-
 
         aSwitch = findViewById(R.id.switchmode);
         aSwitch2 = findViewById(R.id.reminder);
