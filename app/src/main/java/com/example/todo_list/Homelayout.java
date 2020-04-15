@@ -2,6 +2,8 @@ package com.example.todo_list;
 
 import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
@@ -14,6 +16,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -31,6 +34,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -56,9 +60,9 @@ public class Homelayout extends AppCompatActivity implements OnNavigationItemSel
     private ImageView imageView;
     private TextView textView;
     WorkAdapter workAdapter1 = new WorkAdapter();
-    public static ArrayList<String> remindertime = new ArrayList<>();
-    public static ArrayList<String> reminderdate = new ArrayList<>();
-    public static ArrayList<String> remindername = new ArrayList<>();
+    public ArrayList<String> remindertime = new ArrayList<>();
+    public ArrayList<String> reminderdate = new ArrayList<>();
+    public ArrayList<String> remindername = new ArrayList<>();
     Toolbar toolbar;
     private DrawerLayout drawer;
     public static final String editid = "com.example.to_do_list.editid";
@@ -70,6 +74,7 @@ public class Homelayout extends AppCompatActivity implements OnNavigationItemSel
     private Toast backtost;
     private AlertDialog.Builder alretdialog;
     private LinearLayout linearLayout;
+    private NotificationManagerCompat notificationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +94,8 @@ public class Homelayout extends AppCompatActivity implements OnNavigationItemSel
         floatingActionButton2 = findViewById(R.id.add_work_floating_button2);
         imageView = findViewById(R.id.imagenull);
         textView = findViewById(R.id.txtnull);
+        notificationManager = NotificationManagerCompat.from(this);
+        call();
 
         floatingActionButton2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,63 +115,26 @@ public class Homelayout extends AppCompatActivity implements OnNavigationItemSel
             public void onChanged(List<Work> works) {
                 workAdapter1.setNotes(works);
                 linearLayout.setVisibility(workAdapter1.getItemCount() == 0 ? View.VISIBLE : View.INVISIBLE);
-//                if (works.size() != 0) {
-//                    Log.d("ffff", "f" + works.size());
-//                    imageView.setVisibility(View.INVISIBLE);
-//                    textView.setText("");
-//                } else {
-//
-//                    Log.d("ffff", "0");
-//                    imageView.setVisibility(View.VISIBLE);
-//                    textView.setText("Nothing to do");
-//                }
-
-            }
-        });
-
-        workViewModel.getAllWorks().observe(this, new Observer<List<Work>>() {
-            @Override
-            public void onChanged(List<Work> works) {
+                remindername.clear();
+                remindertime.clear();
+                reminderdate.clear();
 
                 for (int i = 0; i < works.size(); i++) {
-                    remindertime.add(works.get(i).getDue_time());
-                    reminderdate.add(works.get(i).getDate());
-                    remindername.add(works.get(i).getEvent_name());
-                    if (works.get(i).isCom() == false) {
-                        Log.d("dddd", "" + remindertime.get(i));
-                        Log.d("dddd", "" + reminderdate.get(i));
-                        Log.d("dddd", "" + remindername.get(i));
 
-                        String[] sp = reminderdate.get(i).split("/");
-                        String[] sp1 = remindertime.get(i).split("[: ]");
-                        int i0 = Integer.parseInt(sp[0]);
-                        int i1 = Integer.parseInt(sp[1]) - 1;
-                        int i2 = Integer.parseInt(sp[2]);
-                        int i5 = 0;
-                        int i3 = Integer.parseInt(sp1[0]);
-                        int i4 = Integer.parseInt(sp1[1]);
-                        if (sp1[2] != "AM") {
-                            i5 = i3 + 12;
-                        }
-                        Log.d("dddd", "" + i0);
-                        Log.d("dddd", "" + i1);
-                        Log.d("dddd", "" + i2);
-                        Log.d("dddd", "" + i3);
-                        Log.d("dddd", "" + i4);
-                        Log.d("dddd", "" + i5);
-                        Toast.makeText(Homelayout.this, "www", Toast.LENGTH_SHORT).show();
-                        Calendar cal = Calendar.getInstance();
-                        cal.set(i2, i1, i0, i5, i4, 0);
-                        Intent intent12 = new Intent(Homelayout.this, Alertreciver.class);
-                        PendingIntent pendingIntent = PendingIntent.getBroadcast(Homelayout.this, 0, intent12, 0);
-                        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-                        alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+                    if (works.get(i).isCom() != true) {
+                        Log.d("dddd", "ballll" + works.get(i).getEvent_name());
+                        remindertime.add(works.get(i).getDue_time());
+                        reminderdate.add(works.get(i).getDate());
+                        remindername.add(works.get(i).getEvent_name());
                     }
 
-
                 }
+                Log.d("dddd", "" + remindername.size());
+                reminderdata();
+
             }
         });
+
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -439,5 +409,70 @@ public class Homelayout extends AppCompatActivity implements OnNavigationItemSel
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void call() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "hasan";
+            String des = "dfafafeqfwvrg3qrgoqinlfmq3po";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+            NotificationChannel channel3 = new NotificationChannel(
+                    "fuad",
+                    "Channel 1",
+                    importance
+            );
+            channel3.setDescription(des);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel3);
+
+        }
+    }
+
+    public void reminderdata() {
+        Log.d("dddd", "ki j b");
+//        for(String i:remindername){
+//
+//            Log.d("dddd",""+i);
+//        }
+//        Log.d("dddd",""+remindername.size());
+
+
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(2020, 3, 11, 11, 25, 0);
+        Intent intent12 = new Intent(Homelayout.this, Alertreciver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(Homelayout.this, 0, intent12, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+        //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+
+
+//        String[] sp = reminderdate.get(i).split("/");
+//        String[] sp1 = remindertime.get(i).split("[: ]");
+//        int i0 = Integer.parseInt(sp[0]);
+//        int i1 = Integer.parseInt(sp[1]) - 1;
+//        int i2 = Integer.parseInt(sp[2]);
+//        int i5 = 0;
+//        int i3 = Integer.parseInt(sp1[0]);
+//        int i4 = Integer.parseInt(sp1[1]);
+//        if (sp1[2] != "AM") {
+//            i5 = i3 + 12;
+//        }
+//        Log.d("dddd", "" + i0);
+//        Log.d("dddd", "" + i1);
+//        Log.d("dddd", "" + i2);
+//        Log.d("dddd", "" + i3);
+//        Log.d("dddd", "" + i4);
+//        Log.d("dddd", "" + i5);
+//        Toast.makeText(Homelayout.this, "www", Toast.LENGTH_SHORT).show();
+//        Calendar cal = Calendar.getInstance();
+//        //cal.set(i2,i1, i0, i5, i4, 0);
+//         cal.set(2020, 3, 9, 23, 42, 0);
+//        Intent intent12 = new Intent(Homelayout.this, Alertreciver.class);
+//        PendingIntent pendingIntent = PendingIntent.getBroadcast(Homelayout.this, 0, intent12, 0);
+//        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+//        alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+
     }
 }
