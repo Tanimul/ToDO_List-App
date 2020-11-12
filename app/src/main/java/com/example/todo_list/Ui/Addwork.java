@@ -1,4 +1,4 @@
-package com.example.todo_list;
+package com.example.todo_list.Ui;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -11,10 +11,10 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
+
+import com.example.todo_list.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -31,24 +31,15 @@ public class Addwork extends AppCompatActivity {
     private int id;
     private String min;
 
-
     public static final String eid = "com.example.to_do_list.eid";
     public static final String ed1 = "com.example.to_do_list.ed1";
     public static final String ed2 = "com.example.to_do_list.ed2";
     public static final String ed3 = "com.example.to_do_list.ed3";
     public static final String e_pri = "com.example.to_do_list.e_pri";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            Toast.makeText(this, "Dark", Toast.LENGTH_SHORT).show();
-            setTheme(R.style.DarkTheme);
-        } else {
-            Toast.makeText(this, "Light", Toast.LENGTH_SHORT).show();
-            setTheme(R.style.LightTheme);
-        }
         setContentView(R.layout.activity_addwork);
 
         editText = findViewById(R.id.event_name);
@@ -83,6 +74,7 @@ public class Addwork extends AppCompatActivity {
                 if (currentYear == 0 || currentMonth == 0 || currentDay == 0) {
 
                     currentYear = mcurrentDate.get(Calendar.YEAR);
+
                     currentMonth = mcurrentDate.get(Calendar.MONTH);
                     currentDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
                 }

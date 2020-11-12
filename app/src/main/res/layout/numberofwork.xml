@@ -6,86 +6,87 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    app:cardCornerRadius="10dp"
-    app:cardBackgroundColor="#B6AEAE">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingBottom="5dp"
-    tools:ignore="MissingConstraints">
-    <CheckBox
-        android:id="@+id/checkbox_meat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:buttonTint="#686666"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints" />
+    app:cardCornerRadius="10dp">
 
-    <TextView
-        android:id="@+id/rc_event_name"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Event Name"
-        android:paddingTop="10dp"
-        android:layout_marginLeft="60dp"
-        android:paddingRight="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@id/checkbox_meat"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:paddingBottom="5dp"
+        tools:ignore="MissingConstraints">
+
+        <CheckBox
+            android:id="@+id/checkbox_meat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:buttonTint="#686666"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/rc_event_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:hint="Event Name"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@id/checkbox_meat"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <TextView
-        android:id="@+id/rc_textview_date"
-        android:layout_width="96dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="12dp"
+        <TextView
+            android:id="@+id/rc_textview_date"
+            android:layout_width="96dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="12dp"
+            android:text="Date"
+            app:layout_constraintEnd_toStartOf="@+id/rc_textview_duetime"
+            app:layout_constraintHorizontal_bias="0.08"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rc_event_name" />
 
-        android:text="Date"
-        app:layout_constraintEnd_toStartOf="@+id/textview_duetime"
-        app:layout_constraintHorizontal_bias="0.08"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rc_event_name" />
+        <TextView
+            android:id="@+id/rc_textview_duetime"
+            android:layout_width="111dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="12dp"
+            android:text="Due Time"
+            app:layout_constraintStart_toEndOf="@id/rc_textview_date"
+            app:layout_constraintTop_toBottomOf="@+id/rc_event_name" />
 
-    <TextView
-        android:id="@+id/rc_textview_duetime"
-        android:layout_width="111dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="12dp"
+        <RatingBar
+            android:id="@+id/rc_ratingBar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="112dp"
+            android:layout_marginLeft="112dp"
+            android:layout_marginTop="16dp"
+            android:isIndicator="true"
+            android:rating="5"
+            app:layout_constraintStart_toEndOf="@id/rc_textview_date"
+            app:layout_constraintTop_toBottomOf="@id/rc_event_name"
+            app:layout_goneMarginEnd="50dp" />
 
-        android:text="Due Time"
-        app:layout_constraintStart_toEndOf="@id/rc_textview_date"
-        app:layout_constraintTop_toBottomOf="@+id/rc_event_name" />
-
-    <RatingBar
-        android:id="@+id/rc_ratingBar"
-        style="?android:attr/ratingBarStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="112dp"
-        android:layout_marginLeft="112dp"
-        android:layout_marginTop="16dp"
-        android:isIndicator="true"
-        android:rating="5"
-        app:layout_constraintStart_toEndOf="@id/rc_textview_date"
-        app:layout_constraintTop_toBottomOf="@id/rc_event_name"
-        app:layout_goneMarginEnd="50dp" />
-
-<!--    <ImageView-->
-<!--        android:id="@+id/rc_delette_button"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:src="@drawable/ic_delete"-->
-<!--        app:layout_constraintStart_toEndOf="@id/rc_ratingBar"-->
-<!--        />-->
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!--    <ImageView-->
+        <!--        android:id="@+id/rc_delette_button"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:src="@drawable/ic_delete"-->
+        <!--        app:layout_constraintStart_toEndOf="@id/rc_ratingBar"-->
+        <!--        />-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

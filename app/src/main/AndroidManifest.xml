@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.todo_list">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,27 +12,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".About"
-            android:parentActivityName=".Homelayout"></activity>
-        <activity android:name=".Setting"
-            android:parentActivityName=".Homelayout"/>
-        <activity android:name=".ListOfWork"
-            android:parentActivityName=".Homelayout"/>
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-1455584119366220~8047334923"/>
+
+        <activity android:name=".Ui.About"
+            android:parentActivityName=".Ui.HomeActivity"></activity>
+        <activity android:name=".Ui.Setting"
+            android:parentActivityName=".Ui.HomeActivity" />
         <activity
-            android:name=".Homelayout"
+            android:name=".Ui.HomeActivity"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar"
             >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Addwork"
-            android:parentActivityName=".Homelayout"></activity>
-        <receiver android:name=".Alertreciver" />
+        <activity android:name=".Ui.Addwork"
+            android:parentActivityName=".Ui.HomeActivity"></activity>
+        <receiver android:name=".Notification.Alertreciver" />
     </application>
 
 </manifest>

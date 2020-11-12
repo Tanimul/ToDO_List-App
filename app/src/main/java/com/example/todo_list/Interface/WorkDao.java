@@ -1,14 +1,14 @@
-package com.example.todo_list;
+package com.example.todo_list.Interface;
 
 
 import androidx.lifecycle.LiveData;
-import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.room.Dao;
 import androidx.room.Delete;
-import androidx.room.Ignore;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
+
+import com.example.todo_list.Model.Work;
 
 import java.util.List;
 
@@ -29,8 +29,6 @@ public interface WorkDao {
 
     @Query("SELECT * FROM work_table ORDER BY rating DESC")
     LiveData<List<Work>> getallworks();    //showing data
-
-
 
 
 }

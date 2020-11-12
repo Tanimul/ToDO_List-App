@@ -1,4 +1,4 @@
-package com.example.todo_list;
+package com.example.todo_list.Adapter;
 
 import android.graphics.Paint;
 import android.util.Log;
@@ -6,30 +6,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.todo_list.Model.Work;
+import com.example.todo_list.R;
+
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Locale;
 
 public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkHolder> implements Filterable {
     private List<Work> works = new ArrayList<>();
     public static List<Work> works_all;
     private OnitemclickListener listener;
-
+    private static final String TAG = "Work_Adapter";
 
     @NonNull
-
     @Override
     public WorkHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
@@ -76,7 +73,6 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkHolder> im
     public Work getWorkAt(int position) {
         return works.get(position);
     }
-
 
     public class WorkHolder extends RecyclerView.ViewHolder {
 
@@ -149,7 +145,6 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkHolder> im
         this.listener = listener;
     }
 
-
     @Override
     public Filter getFilter() {
         return filter;
@@ -163,9 +158,9 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkHolder> im
             FilterResults results = new FilterResults();
             if (constraint == null || constraint.length() == 0) {
                 results.count = works_all.size();
-                Log.d("dd","dd"+results.count);
+                Log.d(TAG,"result count: "+results.count);
                 results.values = works_all;
-                Log.d("dd","dd"+results.values);
+                Log.d(TAG,"result values: "+results.values);
             } else {
                 String searchStr = constraint.toString().toUpperCase();
                 List<Work> resultsData = new ArrayList<>();
@@ -175,8 +170,8 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkHolder> im
                 }
                 results.count = resultsData.size();
                 results.values = resultsData;
-                Log.d("dd","d"+results.count);
-                Log.d("dd","d"+results.values);
+                Log.d(TAG,"result count: "+results.count);
+                Log.d(TAG,"result values: "+results.values);
             }
             return results;
         }

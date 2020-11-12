@@ -1,12 +1,10 @@
-package com.example.todo_list;
+package com.example.todo_list.Model;
 
 
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "work_table")
-
 public class Work {
 
     @PrimaryKey(autoGenerate = true)
@@ -30,7 +28,6 @@ public class Work {
     public boolean isCom() {
         return com;
     }
-
     public void setCom(boolean com) {
         this.com = com;
     }
@@ -38,7 +35,6 @@ public class Work {
     public void setId(int id) {
         this.id = id;
     }
-
     public int getId() {
         return id;
     }

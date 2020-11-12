@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="10dp"
-    android:paddingRight="10dp">
+    android:paddingRight="10dp"
+    tools:context=".Ui.Setting"
+    >
 
     <TextView
         android:id="@+id/comingSoon"
@@ -24,14 +26,14 @@
         android:id="@+id/textviewchangetheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingBottom="2dp"
         android:text="Change Theme"
-        android:textSize="20dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,11 +44,11 @@
         android:id="@+id/switchmode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
+        android:layout_marginTop="5dp"
         android:text="Dark Mode"
         app:layout_constraintTop_toBottomOf="@id/textviewchangetheme" />
 
@@ -54,77 +56,18 @@
         android:id="@+id/reminder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="Reminders"
-        android:textSize="20dp"
+        android:text="Reminder"
+        android:checked="false"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switchmode"
         tools:ignore="MissingConstraints" />
-
-    <CheckBox
-        android:id="@+id/switchmoderemider1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:buttonTint="#686666"
-        android:layoutDirection="rtl"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text="Before event"
-        android:textAlignment="textStart"
-        app:layout_constraintTop_toBottomOf="@id/reminder" />
-
-    <CheckBox
-        android:id="@+id/switchmoderemider2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:buttonTint="#686666"
-        android:layoutDirection="rtl"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text="15 minutes before"
-        android:textAlignment="textStart"
-        app:layout_constraintTop_toBottomOf="@id/switchmoderemider1" />
-
-    <CheckBox
-        android:id="@+id/switchmoderemider3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:buttonTint="#686666"
-        android:layoutDirection="rtl"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text="30 minutes before"
-        android:textAlignment="textStart"
-        app:layout_constraintTop_toBottomOf="@id/switchmoderemider2" />
-
-    <CheckBox
-        android:id="@+id/switchmoderemider4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:buttonTint="#686666"
-        android:layoutDirection="rtl"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text="1 hour before"
-        android:textAlignment="textStart"
-        app:layout_constraintTop_toBottomOf="@id/switchmoderemider3" />
 
 
 

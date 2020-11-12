@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".Homelayout"
+    tools:context=".Ui.HomeActivity"
     tools:openDrawer="start">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,29 +33,32 @@
             tools:listitem="@layout/numberofwork" />
 
         <LinearLayout
+            android:id="@+id/empty_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="?android:actionBarSize"
             android:gravity="center"
-            android:id="@+id/empty_view"
-            android:orientation="vertical"
-            >
+            android:visibility="gone"
+            android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/imagenull"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/todolist" />
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:src="@drawable/todologopng" />
 
             <TextView
                 android:id="@+id/txtnull"
-                android:layout_marginTop="5dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Great! Nothing to do"
-                android:textSize="20sp" />
+                android:gravity="center"
+                android:text="   Great! Nothing to do ."
+                android:textColor="@color/colorblack"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
         </LinearLayout>
-
-
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_work_floating_button2"
@@ -76,7 +79,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
@@ -85,6 +87,5 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawermenu" />
-
 
 </androidx.drawerlayout.widget.DrawerLayout>

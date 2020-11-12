@@ -1,4 +1,4 @@
-package com.example.todo_list;
+package com.example.todo_list.Room;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -9,12 +9,14 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.todo_list.Interface.WorkDao;
+import com.example.todo_list.Model.Work;
+
 
 @Database(entities = {Work.class}, version = 2,exportSchema = false)
 public abstract class WorkDatabase extends RoomDatabase {
 
     private static WorkDatabase instance;
-
     public abstract WorkDao workDao();
 
     public static synchronized WorkDatabase getInstance(Context context) {
@@ -38,7 +40,6 @@ public abstract class WorkDatabase extends RoomDatabase {
 
         }
     };
-
 
     private static class PopulateDbAsynTask extends AsyncTask<Void, Void, Void> {
         private WorkDao workDao;

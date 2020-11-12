@@ -1,10 +1,13 @@
-package com.example.todo_list;
+package com.example.todo_list.Room;
 
 
 import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
+
+import com.example.todo_list.Interface.WorkDao;
+import com.example.todo_list.Model.Work;
 
 import java.util.List;
 
@@ -13,10 +16,8 @@ public class WorkRepository {
     private WorkDao workDao;
     private LiveData<List<Work>> allworkes;
 
-
     public WorkRepository(Application application) {
         WorkDatabase database = WorkDatabase.getInstance(application);
-
         workDao = database.workDao();
         allworkes = workDao.getallworks();
 
@@ -56,7 +57,6 @@ public class WorkRepository {
             return null;
         }
     }
-
 
     private static class UpdateWorkAsyntask extends AsyncTask<Work, Void, Void> {
         private WorkDao workDao;

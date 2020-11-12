@@ -1,50 +1,41 @@
-package com.example.todo_list;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
+package com.example.todo_list.Ui;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.todo_list.R;
+import com.example.todo_list.databinding.ActivityAboutBinding;
 
 public class About extends AppCompatActivity implements View.OnClickListener {
 
-
-   private Button facebook, email, github, instragram;
+    private ActivityAboutBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            Toast.makeText(this, "Dark", Toast.LENGTH_SHORT).show();
-            setTheme(R.style.DarkTheme);
-        } else {
-            Toast.makeText(this, "Light", Toast.LENGTH_SHORT).show();
-            setTheme(R.style.LightTheme);
-        }
-        setContentView(R.layout.activity_about);
+        binding = ActivityAboutBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         setTitle("About");
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        facebook = findViewById(R.id.facebook);
-        email = findViewById(R.id.email);
-        github = findViewById(R.id.github);
-        instragram = findViewById(R.id.instragam);
-        facebook.setOnClickListener(this);
-        email.setOnClickListener(this);
-        instragram.setOnClickListener(this);
-        github.setOnClickListener(this);
+        binding.facebook.setOnClickListener(this);
+        binding.email.setOnClickListener(this);
+        binding.instragam.setOnClickListener(this);
+        binding.github.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
+
+        //link with Facebook
         if (v.getId() == R.id.facebook) {
+
             try {
                 getPackageManager()
                         .getPackageInfo("com.example.todo_list", 0); //Checks if FB is even installed.
@@ -54,18 +45,24 @@ public class About extends AppCompatActivity implements View.OnClickListener {
                 startActivity(new Intent(Intent.ACTION_VIEW,
                         Uri.parse("https://www.facebook.com/fuhad.hasan.315"))); //catches and opens a url to the desired page
             }
-        } else if (v.getId() == R.id.email) {
+
+        }
+        //link with Email
+        else if (v.getId() == R.id.email) {
+
             try {
                 getPackageManager()
-                        .getPackageInfo("com.example.todo_list", 0); //Checks if Instagram is even installed.
+                        .getPackageInfo("com.example.todo_list", 0); //Checks if Email is even installed.
                 startActivity(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("https://mail.google.com/mail/u/0/#inbox"))); //Trys to make intent with Instagram's URI
+                        Uri.parse("https://mail.google.com/mail/u/0/#inbox"))); //Trys to make intent with Email's URI
             } catch (Exception e) {
                 startActivity(new Intent(Intent.ACTION_VIEW,
                         Uri.parse("https://mail.google.com/mail/u/0/#inbox"))); //catches and opens a url to the desired page
             }
 
-        } else if (v.getId() == R.id.instragam) {
+        }
+        //link with Instragram
+        else if (v.getId() == R.id.instragam) {
 
             try {
                 getPackageManager()
@@ -76,12 +73,16 @@ public class About extends AppCompatActivity implements View.OnClickListener {
                 startActivity(new Intent(Intent.ACTION_VIEW,
                         Uri.parse("https://www.instagram.com/fuad7594/"))); //catches and opens a url to the desired page
             }
-        } else {
+
+        }
+        //link with Github
+        else {
+
             try {
                 getPackageManager()
-                        .getPackageInfo("com.example.todo_list", 0); //Checks if Instagram is even installed.
+                        .getPackageInfo("com.example.todo_list", 0); //Checks if Github is even installed.
                 startActivity(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("https://github.com/Tanimul"))); //Trys to make intent with Instagram's URI
+                        Uri.parse("https://github.com/Tanimul"))); //Trys to make intent with Github's URI
             } catch (Exception e) {
                 startActivity(new Intent(Intent.ACTION_VIEW,
                         Uri.parse("https://github.com/Tanimul"))); //catches and opens a url to the desired page

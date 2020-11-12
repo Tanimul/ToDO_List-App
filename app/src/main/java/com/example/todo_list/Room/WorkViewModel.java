@@ -1,4 +1,4 @@
-package com.example.todo_list;
+package com.example.todo_list.Room;
 
 import android.app.Application;
 
@@ -6,25 +6,25 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.example.todo_list.Model.Work;
+
 import java.util.List;
 
 public class WorkViewModel extends AndroidViewModel {
     private WorkRepository workRepository;
     private LiveData<List<Work>> allWorks;
 
-
-
-
     public WorkViewModel(@NonNull Application application) {
         super(application);
         workRepository = new WorkRepository(application);
         allWorks = workRepository.getAllworkes();
 
-
     }
+
     public void insert(Work work) {
         workRepository.insert(work);
     }
+
     public void update(Work work) {
         workRepository.update(work);
     }
@@ -40,7 +40,6 @@ public class WorkViewModel extends AndroidViewModel {
     public LiveData<List<Work>> getAllWorks() {
         return allWorks;
     }
-
 
 
 }

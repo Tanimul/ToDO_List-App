@@ -4,15 +4,17 @@
     tools:showIn="navigation_view"
  >
     <group android:checkableBehavior="single">
+
+        <item
+            android:icon="@drawable/ic_baseline_home"
+            android:id="@+id/nav_home"
+            android:title="Home" />
+
         <item
             android:icon="@drawable/add_black"
             android:id="@+id/nav_addwork"
             android:title="Add Work"
             />
-        <item
-            android:icon="@drawable/ic_work_black"
-            android:id="@+id/nav_listof_work"
-            android:title="List of Work" />
 
         <item
             android:icon="@drawable/ic_settings"
